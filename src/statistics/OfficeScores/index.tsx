@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { CompanyYearEndData } from '../../types';
 import Statistic from '../../components/Statistic';
 import StatisticValue from '../../components/Statistic/Value';
-import { getOverallCarbonFootprintScore } from '../../types/statisticFunctions';
 import StatisticHeader from '../../components/Statistic/Header';
 import { Ascend, Descend } from 'grommet-icons';
 import IconButton from '../../components/IconButton';
