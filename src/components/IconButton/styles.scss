@@ -1,0 +1,13 @@
+@import "/src/colours.scss";
+
+.icon-button {
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  border-radius: 100%;
+
+  &:hover {
+    background-color: $hover-colour;
+  }
+}

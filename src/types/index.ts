@@ -16,6 +16,7 @@ export type CompanyYearEndData = {
   turnover: number;
   company?: Company;
   accountingData?: AccountingData[];
+  carbonFootprintScore: number;
 }
 
 export type AccountingData = {

@@ -11,6 +11,7 @@ import { getOverallCarbonFootprintScore } from '../types/statisticFunctions';
 import Statistic from '../components/Statistic';
 import StatisticHeader from '../components/Statistic/Header';
 import StatisticValue from '../components/Statistic/Value';
+import OfficeScores from './OfficeScores';
 
 interface StatisticsProp {
   companyIDs: number[];
@@ -46,27 +47,11 @@ const Statistics: React.FC<StatisticsProp> = ({ companyIDs }) => {
         <StatisticHeader
           title="Overall Carbon Footprint Score"/>
       </Statistic>
-      <div
-        className="statistic-group">
-        <h2 className="title">Offices Carbon Footprint Score</h2>
-        <div
-          className="list">
-          {
-            yearEndData && yearEndData.map(yearEndDataItem => {
-              return (
-                <Statistic
-                  filled>
-                  <StatisticValue
-                    value={getOverallCarbonFootprintScore([yearEndDataItem]).toFixed(1) || 0} />
-                  <StatisticHeader
-                    title={yearEndDataItem.company?.name || ""}
-                    subtitle={`${yearEndDataItem.yearEndStartDate} - ${yearEndDataItem.yearEndFinishDate}`} />
-                </Statistic>
-              );
-            })
-          }
-        </div>
-      </div>
+      {
+        yearEndData &&
+            <OfficeScores
+              data={yearEndData}/>
+      }
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { GraphQLResult } from "@aws-amplify/api";
 import { ListCompanyYearEndDataQuery } from "../../API";
 import { CompanyYearEndData } from "../../types";
+import { getOverallCarbonFootprintScore } from "../../types/statisticFunctions";
 
 const mapListCompanyYearEndDataQuery = (listCompanyYearEndData: GraphQLResult<ListCompanyYearEndDataQuery>): CompanyYearEndData[] => {
   return listCompanyYearEndData.data?.listCompanyYearEndData?.items?.map((companyYearEndData: any) => ({
@@ -12,6 +13,7 @@ const mapListCompanyYearEndDataQuery = (listCompanyYearEndData: GraphQLResult<Li
     turnover: companyYearEndData?.turnover,
     accountingData: companyYearEndData?.accountingData,
     company: companyYearEndData?.company,
+    carbonFootprintScore: getOverallCarbonFootprintScore([companyYearEndData]).toFixed(1) || 0,
   } as CompanyYearEndData)) || [];
 }
 
