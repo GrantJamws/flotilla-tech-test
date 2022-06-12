@@ -1,0 +1,11 @@
+@import "/src/colours.scss";
+
+.statistic-value {
+  color: $accent-colour;
+  font-size: 35px;
+  font-weight: bold;
+
+  .value {
+    margin: 0;
+  }
+}

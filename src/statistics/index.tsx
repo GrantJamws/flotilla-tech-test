@@ -8,6 +8,9 @@ import { CompanyYearEndData } from '../types';
 import callGraphQL from '../helpers/GraphQL';
 import { mapListCompanyYearEndData } from '../models/CompanyYearEndData';
 import { getOverallCarbonFootprintScore } from '../types/statisticFunctions';
+import Statistic from '../components/Statistic';
+import StatisticHeader from '../components/Statistic/Header';
+import StatisticValue from '../components/Statistic/Value';
 
 interface StatisticsProp {
   companyIDs: number[];
@@ -37,18 +40,12 @@ const Statistics: React.FC<StatisticsProp> = ({ companyIDs }) => {
 
   return (
     <div className="statistics">
-      <div
-        className="statistic">
-        <div
-          className="header">
-          <h3 className="title">
-            Overall Carbon Footprint Score
-          </h3>
-        </div>
-        <h4 className="value">
-          {carbonFootprintScore?.toFixed(1)}
-        </h4>
-      </div>
+      <Statistic>
+        <StatisticValue
+          value={carbonFootprintScore?.toFixed(1) || 0} />
+        <StatisticHeader
+          title="Overall Carbon Footprint Score"/>
+      </Statistic>
       <div
         className="statistic-group">
         <h2 className="title">Offices Carbon Footprint Score</h2>
@@ -57,21 +54,14 @@ const Statistics: React.FC<StatisticsProp> = ({ companyIDs }) => {
           {
             yearEndData && yearEndData.map(yearEndDataItem => {
               return (
-                <div
-                className="statistic">
-                  <h4 className="value">
-                    {getOverallCarbonFootprintScore([yearEndDataItem]).toFixed(1)}
-                  </h4>
-                  <div
-                    className="header">
-                    <h3 className="title">
-                      {yearEndDataItem.company?.name}
-                    </h3>
-                    <p className="subtitle">
-                      {`${yearEndDataItem.yearEndStartDate} - ${yearEndDataItem.yearEndFinishDate}`}
-                    </p>
-                  </div>
-                </div>
+                <Statistic
+                  filled>
+                  <StatisticValue
+                    value={getOverallCarbonFootprintScore([yearEndDataItem]).toFixed(1) || 0} />
+                  <StatisticHeader
+                    title={yearEndDataItem.company?.name || ""}
+                    subtitle={`${yearEndDataItem.yearEndStartDate} - ${yearEndDataItem.yearEndFinishDate}`} />
+                </Statistic>
               );
             })
           }
