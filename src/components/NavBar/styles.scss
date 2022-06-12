@@ -1,0 +1,22 @@
+@import "/src/colours.scss";
+
+.navbar {
+  background-color: $accent-colour;
+  color: $background-colour;
+  border-radius: 100px;
+  width: 100%;
+  max-width: 1000px;
+  height: 70px;
+  margin: 28px auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+
+  .menu-icon {
+    color: $background-colour;
+    fill: $background-colour;
+    stroke: $background-colour;
+  }
+}

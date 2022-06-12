@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-flotillatechtest-dev-174437-authRole",
+      "UnauthRoleArn": "arn:aws:iam::004008999462:role/amplify-flotillatechtest-dev-174437-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::004008999462:role/amplify-flotillatechtest-dev-174437-authRole",
+      "Region": "eu-west-2",
+      "DeploymentBucketName": "amplify-flotillatechtest-dev-174437-deployment",
+      "UnauthRoleName": "amplify-flotillatechtest-dev-174437-unauthRole",
+      "StackName": "amplify-flotillatechtest-dev-174437",
+      "StackId": "arn:aws:cloudformation:eu-west-2:004008999462:stack/amplify-flotillatechtest-dev-174437/9e017eb0-e8dc-11ec-aa78-0ae730ff7fac",
+      "AmplifyAppId": "d3qjvptqtjvreu"
+    }
+  }
+}

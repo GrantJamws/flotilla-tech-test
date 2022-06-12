@@ -1,24 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.scss';
 
-function App() {
+import { useEffect, useState } from 'react';
+
+import { ListCompaniesQuery } from './API';
+import NavBar from './components/NavBar';
+import callGraphQL from './helpers/GraphQL';
+import { listCompanies } from './graphql/queries';
+import { mapListCompanies } from './models/Companies';
+import { Company } from './types';
+import Statistics from './statistics';
+
+const App = () => {
+  const companyID = 1;
+  const [company, setCompany] = useState<Company>();
+  const [companyIDs, setCompanyIDs] = useState<number[]>();
+
+  const getCompany = async () => {
+    await callGraphQL<ListCompaniesQuery>(listCompanies, {filter: {id: {eq: companyID}}})
+      .then((result) => {
+        const companiesList = mapListCompanies(result);
+        setCompany(companiesList[0]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getCompany();
+  }, []);
+
+  useEffect(() => {
+    if (company) {
+      const childrenIDs = company.childrenCompanies?.map(childrenCompany => childrenCompany.id) || [];
+      setCompanyIDs([...childrenIDs, company.id]);
+    }
+  }, [company]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar />
+      {
+        companyIDs &&
+          <Statistics
+            companyIDs={companyIDs} />
+      }
     </div>
   );
 }
