@@ -1,0 +1,52 @@
+@import "/src/colours.scss";
+
+.statistics {
+  .statistic {
+    background-color: rgba($accent-colour, 0.05);
+    border-radius: 10px;
+    min-width: 200px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .header {
+      .title {
+        color: $text-colour;
+        margin: 0;
+        font-size: 16px;
+        text-align: left;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+      
+      .subtitle {
+        color: $subtitle-colour;
+        margin: 0;
+        font-size: 10px;
+        text-align: right;
+      }
+    }
+
+    .value {
+      color: $accent-colour;
+      font-size: 35px;
+      margin: 0;
+    }
+
+  }
+
+  .statistic-group {
+    .title {
+      text-align: left;
+    }
+
+    .list {
+      display: flex;
+      gap: 20px;
+      overflow-y: scroll;
+      padding-bottom: 20px;
+    }
+  }
+}

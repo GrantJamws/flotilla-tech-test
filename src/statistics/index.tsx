@@ -37,23 +37,45 @@ const Statistics: React.FC<StatisticsProp> = ({ companyIDs }) => {
 
   return (
     <div className="statistics">
-      <div>
-        <h2>Overall Carbon Footprint Score</h2>
-        <h3>{carbonFootprintScore?.toFixed(1)}</h3>
+      <div
+        className="statistic">
+        <div
+          className="header">
+          <h3 className="title">
+            Overall Carbon Footprint Score
+          </h3>
+        </div>
+        <h4 className="value">
+          {carbonFootprintScore?.toFixed(1)}
+        </h4>
       </div>
-      <div>
-        <h2>Offices Carbon Footprint Score</h2>
-        {
-          yearEndData && yearEndData.map(yearEndDataItem => {
-            return (
-              <div>
-                <h3>{yearEndDataItem.company?.name} Carbon Footprint Score</h3>
-                <h4>{getOverallCarbonFootprintScore([yearEndDataItem])}</h4>
-                <p>{`${yearEndDataItem.yearEndStartDate} - ${yearEndDataItem.yearEndFinishDate}`}</p>
-              </div>
-            );
-          })
-        }
+      <div
+        className="statistic-group">
+        <h2 className="title">Offices Carbon Footprint Score</h2>
+        <div
+          className="list">
+          {
+            yearEndData && yearEndData.map(yearEndDataItem => {
+              return (
+                <div
+                className="statistic">
+                  <h4 className="value">
+                    {getOverallCarbonFootprintScore([yearEndDataItem]).toFixed(1)}
+                  </h4>
+                  <div
+                    className="header">
+                    <h3 className="title">
+                      {yearEndDataItem.company?.name}
+                    </h3>
+                    <p className="subtitle">
+                      {`${yearEndDataItem.yearEndStartDate} - ${yearEndDataItem.yearEndFinishDate}`}
+                    </p>
+                  </div>
+                </div>
+              );
+            })
+          }
+        </div>
       </div>
     </div>
   );
